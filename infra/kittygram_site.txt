@@ -1,0 +1,5 @@
+IP: 158.160.27.148;
+name_taski:  https://mytaskiapp.hopto.org;
+name_kittygram: https://kittymedia.ddns.net;
+login: yc-user;
+password: NRjeSf;
