@@ -1,16 +1,19 @@
 import os
 from pathlib import Path
 
-from dotenv import load_dotenv
-
-load_dotenv()
 
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 
 
+from dotenv import load_dotenv
+
+
+load_dotenv()
+
+
 sentry_sdk.init(
-    dsn="https://6e97940fde024f0d8f8615dbf9690992@o4505306010025984.ingest.sentry.io/4505306012975104",
+    dsn=os.getenv('SENTRY_DSN'),
     integrations=[
         DjangoIntegration(),
     ],
@@ -20,15 +23,13 @@ sentry_sdk.init(
     send_default_pii=True
 )
 
-
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['158.160.27.148', '127.0.0.1', 'localhost', 'kittymedia.ddns.net']
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(',')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -111,12 +112,12 @@ USE_L10N = True
 USE_TZ = True
 
 
-STATIC_URL = 'static_backend'
+STATIC_URL = 'static_backend/'
 
 STATIC_ROOT = BASE_DIR / 'static_backend'
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = '/var/www/infra_sprint1/media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
